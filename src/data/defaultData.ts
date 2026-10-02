@@ -54,7 +54,7 @@ export const DEFAULT_LOCATIONS: LocationConfig[] = [
 ];
 
 export const DEFAULT_SETTINGS: GameSettings = {
-  durationMinutes: 45,
+  durationMinutes: 0,
   maxAttempts: 3,
   pointsFirstAttempt: 100,
   pointsSecondAttempt: 75,

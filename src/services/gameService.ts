@@ -22,6 +22,8 @@ const LOCATIONS_VERSION_KEY = 'matematika_locations_ver';
 const CURRENT_LOCATIONS_VERSION = 'v2_kantin_pos5_cempaka';
 const QUESTIONS_VERSION_KEY = 'matematika_questions_ver';
 const CURRENT_QUESTIONS_VERSION = 'v3_pos1_to_pos5';
+const SETTINGS_VERSION_KEY = 'matematika_settings_ver';
+const CURRENT_SETTINGS_VERSION = 'v2_unlimited_default';
 
 // Helper to shuffle array
 function shuffleArray<T>(array: T[]): T[] {
@@ -51,12 +53,19 @@ function toClientQuestion(q: Question): ClientQuestion {
 class GameService {
   // Get Settings
   async getSettings(): Promise<GameSettings> {
+    const storedSettingsVer = localStorage.getItem(SETTINGS_VERSION_KEY);
+    if (storedSettingsVer !== CURRENT_SETTINGS_VERSION) {
+      localStorage.removeItem(LOCAL_SETTINGS_KEY);
+      localStorage.setItem(SETTINGS_VERSION_KEY, CURRENT_SETTINGS_VERSION);
+    }
+
     try {
       const res = await fetch('/api/settings');
       if (res.ok) {
         const data = await res.json();
         if (data.settings) {
           localStorage.setItem(LOCAL_SETTINGS_KEY, JSON.stringify(data.settings));
+          localStorage.setItem(SETTINGS_VERSION_KEY, CURRENT_SETTINGS_VERSION);
           return data.settings;
         }
       }
@@ -64,7 +73,18 @@ class GameService {
       // fallback
     }
     const saved = localStorage.getItem(LOCAL_SETTINGS_KEY);
-    return saved ? JSON.parse(saved) : DEFAULT_SETTINGS;
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        if (parsed.durationMinutes === 45) {
+          parsed.durationMinutes = 0;
+        }
+        return parsed;
+      } catch {
+        // fallback
+      }
+    }
+    return DEFAULT_SETTINGS;
   }
 
   // Update Settings

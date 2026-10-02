@@ -68,7 +68,7 @@ export const TreasureVictoryView: React.FC<Props> = ({
           🎉 SELAMAT! 🎉
         </h1>
         <p className="text-xs sm:text-sm font-bold text-blue-900 max-w-md mx-auto">
-          Kamu berhasil menyelesaikan seluruh tantangan luas bangun datar di sekolah!
+          Kamu berhasil menyelesaikan seluruh tantangan pola gambar matematika kelas 4 di sekolah!
         </p>
       </div>
 

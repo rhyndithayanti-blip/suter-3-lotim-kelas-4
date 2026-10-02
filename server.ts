@@ -244,6 +244,9 @@ async function startServer() {
 
   // Settings
   app.get('/api/settings', (req: Request, res: Response) => {
+    if (settings.durationMinutes === 45) {
+      settings.durationMinutes = 0;
+    }
     res.json({ success: true, settings });
   });
 

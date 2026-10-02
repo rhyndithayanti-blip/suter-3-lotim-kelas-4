@@ -11,7 +11,7 @@ interface Props {
 export const PlayerSetup: React.FC<Props> = ({ onStartGame, onBack }) => {
   const [mode, setMode] = useState<'individual' | 'group'>('group');
   const [playerName, setPlayerName] = useState('');
-  const [className, setClassName] = useState('Kelas 5A');
+  const [className, setClassName] = useState('Kelas 4');
   const [memberInput, setMemberInput] = useState('');
   const [members, setMembers] = useState<string[]>(['Andi', 'Budi', 'Citra']);
 
@@ -146,12 +146,10 @@ export const PlayerSetup: React.FC<Props> = ({ onStartGame, onBack }) => {
             onChange={(e) => setClassName(e.target.value)}
             className="w-full px-3.5 py-2.5 bg-blue-50/40 border-2 border-blue-200 focus:border-blue-500 rounded-xl text-slate-900 font-bold focus:outline-hidden focus:bg-white text-base"
           >
-            <option value="Kelas 5A">Kelas 5A</option>
-            <option value="Kelas 5B">Kelas 5B</option>
-            <option value="Kelas 5C">Kelas 5C</option>
-            <option value="Kelas 6A">Kelas 6A</option>
-            <option value="Kelas 6B">Kelas 6B</option>
-            <option value="Kelas 6C">Kelas 6C</option>
+            <option value="Kelas 4">Kelas 4</option>
+            <option value="Kelas 4A">Kelas 4A</option>
+            <option value="Kelas 4B">Kelas 4B</option>
+            <option value="Kelas 4C">Kelas 4C</option>
             <option value="Kelas Lainnya">Kelas Lainnya</option>
           </select>
         </div>
